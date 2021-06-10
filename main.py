@@ -42,10 +42,10 @@ dists = [[(e1 - e2).norm().item() for e2 in embeddings] for e1 in embeddings]
 print(pd.DataFrame(dists, columns=names, index=names))
 img = Image.open("images/Dwight/Dwight2.jpg")
 
-# Get cropped and prewhitened image tensor
+
 img_cropped = mtcnn(img, save_path="images/Michael/6765d052-e971-45c6-9763-c069b4f523b7.jpg",)
 aligned = torch.stack([img_cropped]).to(device)
-# Calculate embedding (unsqueeze to add batch dimension)
+
 img_embedding = resnet(aligned)
 for embedding, name in zip(embeddings,names):
     print((embedding-img_embedding[0]).norm().item(),name)
